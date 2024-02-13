@@ -5,6 +5,18 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeCostCalculation", "RecipeCostCalculation.csproj", "{C98C4964-4474-4794-9C01-04A5AD86E902}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{FC07B49D-BF4C-4FB5-A9D5-5EEE4D205776}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{1B0A1AFB-5469-4D77-8046-D927BB5D74E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{E508796F-D06B-444D-BD37-8FCA053F22E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeCostCalculation.DAL", "..\RecipeCostCalculation.DAL\RecipeCostCalculation.DAL.csproj", "{5641A2ED-7B36-4A9A-89F9-5AE85529E175}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeCostCalculation.Domain", "..\RecipeCostCalculation.Domain\RecipeCostCalculation.Domain.csproj", "{C6270C5A-52E9-45EF-BF23-F13B631894D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeCostCalculation.Service", "..\RecipeCostCalculation.Service\RecipeCostCalculation.Service.csproj", "{52B0E062-9B59-4887-B107-0D0A961E91B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +27,26 @@ Global
 		{C98C4964-4474-4794-9C01-04A5AD86E902}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C98C4964-4474-4794-9C01-04A5AD86E902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C98C4964-4474-4794-9C01-04A5AD86E902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5641A2ED-7B36-4A9A-89F9-5AE85529E175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5641A2ED-7B36-4A9A-89F9-5AE85529E175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5641A2ED-7B36-4A9A-89F9-5AE85529E175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5641A2ED-7B36-4A9A-89F9-5AE85529E175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6270C5A-52E9-45EF-BF23-F13B631894D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6270C5A-52E9-45EF-BF23-F13B631894D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6270C5A-52E9-45EF-BF23-F13B631894D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6270C5A-52E9-45EF-BF23-F13B631894D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52B0E062-9B59-4887-B107-0D0A961E91B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B0E062-9B59-4887-B107-0D0A961E91B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52B0E062-9B59-4887-B107-0D0A961E91B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52B0E062-9B59-4887-B107-0D0A961E91B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5641A2ED-7B36-4A9A-89F9-5AE85529E175} = {FC07B49D-BF4C-4FB5-A9D5-5EEE4D205776}
+		{C6270C5A-52E9-45EF-BF23-F13B631894D7} = {1B0A1AFB-5469-4D77-8046-D927BB5D74E6}
+		{52B0E062-9B59-4887-B107-0D0A961E91B6} = {E508796F-D06B-444D-BD37-8FCA053F22E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D094395-7985-4A7E-9100-FCE41994000E}
