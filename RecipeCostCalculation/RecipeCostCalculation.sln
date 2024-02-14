@@ -20,6 +20,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeCostCalculation.Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeCostCalculation.Service", "..\RecipeCostCalculation.Service\RecipeCostCalculation.Service.csproj", "{52B0E062-9B59-4887-B107-0D0A961E91B6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BA053105-220C-4A82-8277-1DD65AB2D1FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeCostCalculation.Tests", "..\RecipeCostCalculation.Tests\RecipeCostCalculation.Tests.csproj", "{A8AE51D8-B3D2-463D-ADB8-8F51103477AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +46,10 @@ Global
 		{52B0E062-9B59-4887-B107-0D0A961E91B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52B0E062-9B59-4887-B107-0D0A961E91B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52B0E062-9B59-4887-B107-0D0A961E91B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8AE51D8-B3D2-463D-ADB8-8F51103477AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8AE51D8-B3D2-463D-ADB8-8F51103477AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8AE51D8-B3D2-463D-ADB8-8F51103477AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8AE51D8-B3D2-463D-ADB8-8F51103477AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{5641A2ED-7B36-4A9A-89F9-5AE85529E175} = {FC07B49D-BF4C-4FB5-A9D5-5EEE4D205776}
 		{C6270C5A-52E9-45EF-BF23-F13B631894D7} = {1B0A1AFB-5469-4D77-8046-D927BB5D74E6}
 		{52B0E062-9B59-4887-B107-0D0A961E91B6} = {E508796F-D06B-444D-BD37-8FCA053F22E2}
+		{A8AE51D8-B3D2-463D-ADB8-8F51103477AB} = {BA053105-220C-4A82-8277-1DD65AB2D1FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D094395-7985-4A7E-9100-FCE41994000E}
