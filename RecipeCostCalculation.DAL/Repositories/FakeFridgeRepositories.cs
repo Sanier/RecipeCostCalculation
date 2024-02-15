@@ -6,6 +6,7 @@ namespace RecipeCostCalculation.DAL.Repositories
     public class FakeFridgeRepositories : IBaseRepositories<FridgeEntity>
     {
         private List<FridgeEntity> _fridges = new List<FridgeEntity>();
+
         public async Task Create(FridgeEntity entity)
         {
             if (entity is null)
