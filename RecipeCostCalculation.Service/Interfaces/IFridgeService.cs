@@ -6,7 +6,9 @@ namespace RecipeCostCalculation.Service.Interfaces
 {
     public interface IFridgeService
     {
-        Task<IBaseResponse<IEnumerable<AvailableProductsFridge>>> GetProductsInFridge();
+        Task<IBaseResponse<IEnumerable<AvailableProductsFridgeModel>>> GetProductsInFridge();
         Task<IBaseResponse<FridgeEntity>> Create(CreateFridgeModel createFridgeModel);
+        Task<IBaseResponse<IEnumerable<AvailableProductsFridgeModel>>> DeleteProductsInFridge(long id);
+        Task<IBaseResponse<IEnumerable<AvailableProductsFridgeModel>>> ChangeProductsInFridge(AvailableProductsFridgeModel model);
     }
 }

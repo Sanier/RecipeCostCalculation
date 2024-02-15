@@ -26,12 +26,12 @@ namespace RecipeCostCalculation.Service.Implementations
         /// </summary>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public async Task<IBaseResponse<IEnumerable<AvailableProductsFridge>>> GetProductsInFridge()
+        public async Task<IBaseResponse<IEnumerable<AvailableProductsFridgeModel>>> GetProductsInFridge()
         {
             try
             {
                 var list = _fridgeRepository.GetAll()
-                    .Select(l => new AvailableProductsFridge
+                    .Select(l => new AvailableProductsFridgeModel
                     {
                         Id = l.Id,
                         Name = l.Name,
@@ -44,11 +44,11 @@ namespace RecipeCostCalculation.Service.Implementations
                 if (list is null)
                     throw new ArgumentNullException();
 
-                return OutputProcessing<IEnumerable<AvailableProductsFridge>>(list, StatusCode.Success);
+                return OutputProcessing<IEnumerable<AvailableProductsFridgeModel>>(list, StatusCode.Success);
             }
             catch(Exception ex)
             {
-                return HandleException<IEnumerable<AvailableProductsFridge>>(ex, "FridgeService.GetProductsInFridge");
+                return HandleException<IEnumerable<AvailableProductsFridgeModel>>(ex, "FridgeService.GetProductsInFridge");
             }
         }
 
@@ -92,6 +92,57 @@ namespace RecipeCostCalculation.Service.Implementations
             catch (Exception ex)
             {
                 return HandleException<FridgeEntity>(ex, "FridgeService.Create");
+            }
+        }
+
+        public async Task<IBaseResponse<IEnumerable<AvailableProductsFridgeModel>>> DeleteProductsInFridge(long id)
+        {
+            try
+            {
+                var list = _fridgeRepository.GetAll()
+                    .FirstOrDefault(l => l.Id == id);
+
+                if (list is null)
+                    throw new ArgumentNullException();
+
+                await _fridgeRepository.Delete(list);
+                await _fridgeRepository.Update(list);
+
+                return OutputProcessing<IEnumerable<AvailableProductsFridgeModel>>("The task has been deleted", StatusCode.Success);
+            }
+            catch (Exception ex)
+            {
+                return HandleException<IEnumerable<AvailableProductsFridgeModel>>(ex, "FridgeService.DeleteProductsInFridge");
+            }
+        }
+
+        public async Task<IBaseResponse<IEnumerable<AvailableProductsFridgeModel>>> ChangeProductsInFridge(AvailableProductsFridgeModel model)
+        {
+            try
+            {
+                var list = _fridgeRepository.GetAll()
+                    .FirstOrDefault(l => l.Id == model.Id);
+
+                list = new FridgeEntity()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Count = model.Count,
+                    Price = model.Price,
+                    EnergyValue = model.EnergyValue,
+                    DateOfManufacture = DateTime.Now,
+                };
+
+                if (list is null)
+                    throw new ArgumentNullException();
+
+                await _fridgeRepository.Update(list);
+
+                return OutputProcessing<IEnumerable<AvailableProductsFridgeModel>>("The task has been changed", StatusCode.Success);
+            }
+            catch (Exception ex)
+            {
+                return HandleException<IEnumerable<AvailableProductsFridgeModel>>(ex, "FridgeService.ChangeProductsInFridge");
             }
         }
 
