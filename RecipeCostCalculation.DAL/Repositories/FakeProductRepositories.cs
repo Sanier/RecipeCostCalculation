@@ -3,10 +3,11 @@ using RecipeCostCalculation.Domain.Entities;
 
 namespace RecipeCostCalculation.DAL.Repositories
 {
-    public class FakeFridgeRepositories : IBaseRepositories<FridgeEntity>
+    public class FakeProductRepositories : IBaseRepositories<ProductEntity>
     {
-        private List<FridgeEntity> _fridges = new List<FridgeEntity>();
-        public async Task Create(FridgeEntity entity)
+        private List<ProductEntity> _fridges = new List<ProductEntity>();
+
+        public async Task Create(ProductEntity entity)
         {
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity));
@@ -15,7 +16,7 @@ namespace RecipeCostCalculation.DAL.Repositories
             await Task.CompletedTask;
         }
 
-        public async Task Delete(FridgeEntity entity)
+        public async Task Delete(ProductEntity entity)
         {
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity));
@@ -24,12 +25,12 @@ namespace RecipeCostCalculation.DAL.Repositories
             await Task.CompletedTask;
         }
 
-        public IQueryable<FridgeEntity> GetAll()
+        public IQueryable<ProductEntity> GetAll()
         {
             return _fridges.AsQueryable();
         }
 
-        public async Task<FridgeEntity> Update(FridgeEntity entity)
+        public async Task<ProductEntity> Update(ProductEntity entity)
         {
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity));
