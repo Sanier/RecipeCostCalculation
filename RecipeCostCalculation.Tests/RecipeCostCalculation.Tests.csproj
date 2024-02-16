@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ControllerTests\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RecipeCostCalculation.DAL\RecipeCostCalculation.DAL.csproj" />
     <ProjectReference Include="..\RecipeCostCalculation.Domain\RecipeCostCalculation.Domain.csproj" />
     <ProjectReference Include="..\RecipeCostCalculation.Service\RecipeCostCalculation.Service.csproj" />

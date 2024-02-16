@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RecipeCostCalculation.Domain\RecipeCostCalculation.Domain.csproj" />
+    <ProjectReference Include="..\RecipeCostCalculation.Service\RecipeCostCalculation.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,16 @@
+using RecipeCostCalculation.DAL.Interfaces;
+using RecipeCostCalculation.DAL.Repositories;
+using RecipeCostCalculation.Domain.Entities;
+using RecipeCostCalculation.Service.Implementations;
+using RecipeCostCalculation.Service.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IBaseRepositories<ProductEntity>, FakeProductRepositories>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 
@@ -23,5 +32,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "Product",
+    pattern: "{controller=Product}/{action=Product}/{id?}"
+    );
 
 app.Run();

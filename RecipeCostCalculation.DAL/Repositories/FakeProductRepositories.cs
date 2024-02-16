@@ -7,6 +7,21 @@ namespace RecipeCostCalculation.DAL.Repositories
     {
         private List<ProductEntity> _fridges = new List<ProductEntity>();
 
+        public FakeProductRepositories()
+        {
+            _fridges.Add(new ProductEntity
+            {
+                Id = 1,
+                Name = "Potatoes",
+                Count = "2",
+                Price = 25d,
+                EnergyValue = 20d,
+                DateOfManufacture = DateTime.Now,
+                ExpirationDate = DateTime.Now
+            });
+        }
+
+
         public async Task Create(ProductEntity entity)
         {
             if (entity is null)

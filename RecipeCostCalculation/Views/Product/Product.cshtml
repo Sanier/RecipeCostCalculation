@@ -1,0 +1,136 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="main-fredge">
+    <h1>Холодильник</h1>
+    <form id="CreateMyProductForm">
+        <input id="nameId" name="name" type="text" placeholder="Количество">
+        <input id="countId" name="count" type="text" placeholder="Цена">
+        <input id="priceId" name="price" type="number" placeholder="Цена">
+        <input id="energyValueId" name="energyValue" type="number" placeholder="Энергитическая ценность">
+        <input id="expirationDateId" name="expirationDate" type="text" placeholder="Конец годности">
+        <button id="createProductId" type="submit">Add</button>
+    </form>
+</div>
+
+<br />
+<div id="products">
+    <table id="dataTableId" class="display">
+        <thead>
+            <tr>
+                <th>Название </th>
+                <th>Количество </th>
+                <th>Цена </th>
+                <th>Энергитическая ценность </th>
+                <th>Конец годности </th>
+                <th>x \ e</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        let dataTable = $('#dataTableId').DataTable({
+            ajax: {
+                url: '@Url.Action("GetProductsInFridge")',
+                method: 'GET',
+                data: model
+            },
+            columns: [
+                { data: 'name' },
+                { data: 'count' },
+                { data: 'price' },
+                { data: 'energyValue' },
+                { data: 'remainingShelfLife' },
+                {
+                    data: null,
+                    sortable: false,
+                    render: function (data, type) {
+                        return '<button class="btn btn-success btn-sm center-block">Delete</button>'
+                    }
+                }
+            ],
+            createdRow: function (nRow, data) {
+                let handlerComplete = function () {
+                    swalWithBootstrapButtons.fire({
+                        title: "Are you sure?",
+                        icon: "warning",
+                        confirmButtonText: "Yes",
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("DeleteProductsInFridge")',
+                                data: { id: data.id },
+                                success: function (response) {
+                                    Swal.fire({
+                                        title: 'Information',
+                                        text: response.description,
+                                        icon: 'success',
+                                        confirmButtonText: 'Ok'
+                                    })
+                                    dataTable.draw();
+                                },
+                                error: function (response) {
+                                    Swal.fire({
+                                        title: 'Information',
+                                        text: response.responseJSON.description,
+                                        icon: 'error',
+                                        confirmButtonText: 'Ok'
+                                    })
+                                }
+                            });
+                        }
+                    });
+                }
+                for (let i = 0; i < dataTable.columns().header().length - 1; i++) {
+                    $('td', nRow).eq(i).css('cursor', 'pointer');
+                    $('td', nRow).eq(i).on('click', null);
+                }
+                $('td button', nRow).on('click', handlerComplete);
+            }
+        });
+
+        function model() {
+            return {
+                Name: $('input[name="name"]').val(),
+                Count: $('input[name="count"]').val(),
+                Price: $('input[name="price"]').val(),
+                EnergyValue: $('input[name="energyValue"]').val(),
+                RemainingShelfLife: $('input[name="expirationDate"]').val()
+            }
+        }
+
+        $('#createProductId').on('click', function (e) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Create")',
+                data: $('#CreateMyProductForm').serialize(),
+                success: function (response) {
+                    Swal.fire({
+                        title: 'Information',
+                        text: response.description,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                    dataTable.draw();
+                    $('#CreateMyProductForm')[0].reset();
+                },
+                error: function (response) {
+                    Swal.fire({
+                        title: 'Information',
+                        text: response.responseJSON.description,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            })
+        });
+        </script>
+}
