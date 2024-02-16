@@ -10,12 +10,12 @@ using RecipeCostCalculation.Service.Interfaces;
 
 namespace RecipeCostCalculation.Service.Implementations
 {
-    public class FridgeService : IFridgeService
+    public class ProductService : IProductService
     {
-        private readonly IBaseRepositories<FridgeEntity> _fridgeRepository;
-        private ILogger<FridgeService> _logger;
+        private readonly IBaseRepositories<ProductEntity> _fridgeRepository;
+        private ILogger<ProductService> _logger;
 
-        public FridgeService(IBaseRepositories<FridgeEntity> fridgeRepository, ILogger<FridgeService> logger)
+        public ProductService(IBaseRepositories<ProductEntity> fridgeRepository, ILogger<ProductService> logger)
         {
             _fridgeRepository = fridgeRepository;
             _logger = logger;
@@ -26,12 +26,12 @@ namespace RecipeCostCalculation.Service.Implementations
         /// </summary>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public async Task<IBaseResponse<IEnumerable<AvailableProductsFridgeModel>>> GetProductsInFridge()
+        public async Task<IBaseResponse<IEnumerable<AvailableProductsModel>>> GetProductsInFridge()
         {
             try
             {
                 var list = _fridgeRepository.GetAll()
-                    .Select(l => new AvailableProductsFridgeModel
+                    .Select(l => new AvailableProductsModel
                     {
                         Id = l.Id,
                         Name = l.Name,
@@ -44,11 +44,11 @@ namespace RecipeCostCalculation.Service.Implementations
                 if (list is null)
                     throw new ArgumentNullException();
 
-                return OutputProcessing<IEnumerable<AvailableProductsFridgeModel>>(list, StatusCode.Success);
+                return OutputProcessing<IEnumerable<AvailableProductsModel>>(list, StatusCode.Success);
             }
             catch(Exception ex)
             {
-                return HandleException<IEnumerable<AvailableProductsFridgeModel>>(ex, "FridgeService.GetProductsInFridge");
+                return HandleException<IEnumerable<AvailableProductsModel>>(ex, "FridgeService.GetProductsInFridge");
             }
         }
 
@@ -58,7 +58,7 @@ namespace RecipeCostCalculation.Service.Implementations
         /// <param name="createFridgeModel"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<IBaseResponse<FridgeEntity>> Create(CreateFridgeModel createFridgeModel)
+        public async Task<IBaseResponse<ProductEntity>> Create(CreateProductModel createFridgeModel)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace RecipeCostCalculation.Service.Implementations
                     .FirstOrDefault(l => l.Name == createFridgeModel.Name);
 
 
-                list = new FridgeEntity()
+                list = new ProductEntity()
                 {
                     Id = createFridgeModel.Id,
                     Name = createFridgeModel.Name,
@@ -87,15 +87,15 @@ namespace RecipeCostCalculation.Service.Implementations
 
                 //может не работать сейчас
                 await _fridgeRepository.Update(list);
-                return OutputProcessing<FridgeEntity>("The task has been created", StatusCode.Success);
+                return OutputProcessing<ProductEntity>("The task has been created", StatusCode.Success);
             }
             catch (Exception ex)
             {
-                return HandleException<FridgeEntity>(ex, "FridgeService.Create");
+                return HandleException<ProductEntity>(ex, "FridgeService.Create");
             }
         }
 
-        public async Task<IBaseResponse<IEnumerable<AvailableProductsFridgeModel>>> DeleteProductsInFridge(long id)
+        public async Task<IBaseResponse<IEnumerable<AvailableProductsModel>>> DeleteProductsInFridge(long id)
         {
             try
             {
@@ -108,22 +108,22 @@ namespace RecipeCostCalculation.Service.Implementations
                 await _fridgeRepository.Delete(list);
                 await _fridgeRepository.Update(list);
 
-                return OutputProcessing<IEnumerable<AvailableProductsFridgeModel>>("The task has been deleted", StatusCode.Success);
+                return OutputProcessing<IEnumerable<AvailableProductsModel>>("The task has been deleted", StatusCode.Success);
             }
             catch (Exception ex)
             {
-                return HandleException<IEnumerable<AvailableProductsFridgeModel>>(ex, "FridgeService.DeleteProductsInFridge");
+                return HandleException<IEnumerable<AvailableProductsModel>>(ex, "FridgeService.DeleteProductsInFridge");
             }
         }
 
-        public async Task<IBaseResponse<IEnumerable<AvailableProductsFridgeModel>>> ChangeProductsInFridge(AvailableProductsFridgeModel model)
+        public async Task<IBaseResponse<IEnumerable<AvailableProductsModel>>> ChangeProductsInFridge(AvailableProductsModel model)
         {
             try
             {
                 var list = _fridgeRepository.GetAll()
                     .FirstOrDefault(l => l.Id == model.Id);
 
-                list = new FridgeEntity()
+                list = new ProductEntity()
                 {
                     Id = model.Id,
                     Name = model.Name,
@@ -138,11 +138,11 @@ namespace RecipeCostCalculation.Service.Implementations
 
                 await _fridgeRepository.Update(list);
 
-                return OutputProcessing<IEnumerable<AvailableProductsFridgeModel>>("The task has been changed", StatusCode.Success);
+                return OutputProcessing<IEnumerable<AvailableProductsModel>>("The task has been changed", StatusCode.Success);
             }
             catch (Exception ex)
             {
-                return HandleException<IEnumerable<AvailableProductsFridgeModel>>(ex, "FridgeService.ChangeProductsInFridge");
+                return HandleException<IEnumerable<AvailableProductsModel>>(ex, "FridgeService.ChangeProductsInFridge");
             }
         }
 

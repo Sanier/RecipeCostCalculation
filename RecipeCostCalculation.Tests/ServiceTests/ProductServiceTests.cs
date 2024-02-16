@@ -9,24 +9,24 @@ using RecipeCostCalculation.Service.Implementations;
 namespace RecipeCostCalculation.Tests.ServiceTests
 {
     [TestFixture]
-    public class FridgeServiceTests
+    public class ProductServiceTests
     {
 
-        private FakeFridgeRepositories _fridgeRepository;
-        private FridgeService _fridgeService;
-        private ILogger<FridgeService> _logger;
+        private FakeProductRepositories _fridgeRepository;
+        private ProductService _fridgeService;
+        private ILogger<ProductService> _logger;
 
         [SetUp]
         public void Setup()
         {
-            _fridgeRepository = new FakeFridgeRepositories();
-            _fridgeService = new FridgeService(_fridgeRepository, _logger);
+            _fridgeRepository = new FakeProductRepositories();
+            _fridgeService = new ProductService(_fridgeRepository, _logger);
         }
 
         [Test]
         public async Task Create_ValidModel_ReturnsSuccess()
         {
-            var fridgeModel = new CreateFridgeModel
+            var fridgeModel = new CreateProductModel
             {
                 Id = 2,
                 Name = "Pomidoro",
@@ -56,7 +56,7 @@ namespace RecipeCostCalculation.Tests.ServiceTests
         [Test]
         public async Task GetProductsInFridge_ReturnsSuccessResponse()
         {
-            var fridgeModel = new FridgeEntity
+            var fridgeModel = new ProductEntity
             {
                 Id = 2,
                 Name = "Pomidoro",
@@ -79,7 +79,7 @@ namespace RecipeCostCalculation.Tests.ServiceTests
         [Test]
         public async Task Delete_Valid_Products()
         {
-            var fridgeModel = new FridgeEntity
+            var fridgeModel = new ProductEntity
             {
                 Id = 1,
                 Name = "Pomidoro",
@@ -89,7 +89,7 @@ namespace RecipeCostCalculation.Tests.ServiceTests
                 DateOfManufacture = DateTime.Now,
                 ExpirationDate = DateTime.Now
             };
-            var fridgeEntity = new FridgeEntity
+            var fridgeEntity = new ProductEntity
             {
                 Id = 2,
                 Name = "Potatoes",
@@ -123,7 +123,7 @@ namespace RecipeCostCalculation.Tests.ServiceTests
         [Test]
         public async Task ChangeProductsInFridge_ReturnsSuccessResponse()
         {
-            var fridgeModel = new FridgeEntity
+            var fridgeModel = new ProductEntity
             {
                 Id = 2,
                 Name = "Pomidoro",
@@ -134,7 +134,7 @@ namespace RecipeCostCalculation.Tests.ServiceTests
 
             await _fridgeRepository.Create(fridgeModel);
 
-            var list = new AvailableProductsFridgeModel
+            var list = new AvailableProductsModel
             {
                 Id = 2,
                 Name = "Pomidoro",

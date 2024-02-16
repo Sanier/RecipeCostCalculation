@@ -1,6 +1,6 @@
 ﻿namespace RecipeCostCalculation.Domain.Models
 {
-    public class CreateFridgeModel
+    public class CreateProductModel
     {
         public long Id { get; set; }
         public string Name { get; set; }

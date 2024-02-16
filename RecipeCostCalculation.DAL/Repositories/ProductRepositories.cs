@@ -3,24 +3,24 @@ using RecipeCostCalculation.Domain.Entities;
 
 namespace RecipeCostCalculation.DAL.Repositories
 {
-    public class FridgeRepositories : IBaseRepositories<FridgeEntity>
+    public class ProductRepositories : IBaseRepositories<ProductEntity>
     {
-        public Task Create(FridgeEntity entity)
+        public Task Create(ProductEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task Delete(FridgeEntity entity)
+        public Task Delete(ProductEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<FridgeEntity> GetAll()
+        public IQueryable<ProductEntity> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<FridgeEntity> Update(FridgeEntity entity)
+        public Task<ProductEntity> Update(ProductEntity entity)
         {
             throw new NotImplementedException();
         }

@@ -4,16 +4,16 @@ using RecipeCostCalculation.DAL.Repositories;
 namespace RecipeCostCalculation.Tests.DbTests
 {
     [TestFixture]
-    public class FakeFridgeRepositoriesTests
+    public class FakeProductRepositoriesTests
     {
-        private FakeFridgeRepositories _repository;
-        private FridgeEntity _fridgeEntity;
+        private FakeProductRepositories _repository;
+        private ProductEntity _fridgeEntity;
 
         [SetUp]
         public void SetUp()
         {
-            _repository = new FakeFridgeRepositories();
-            _fridgeEntity = new FridgeEntity
+            _repository = new FakeProductRepositories();
+            _fridgeEntity = new ProductEntity
             {
                 Id = 1,
                 Name = "Potatoes",
@@ -46,7 +46,7 @@ namespace RecipeCostCalculation.Tests.DbTests
         public async Task UpdateEntity()
         {
             await _repository.Create(_fridgeEntity);
-            var updateEntity = new FridgeEntity
+            var updateEntity = new ProductEntity
             {
                 Id = 1,
                 Name = "Potatoes",

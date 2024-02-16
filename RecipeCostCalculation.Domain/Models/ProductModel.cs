@@ -1,14 +1,13 @@
-﻿using System;
-
-namespace RecipeCostCalculation.Domain.Models
+﻿namespace RecipeCostCalculation.Domain.Models
 {
-    public class AvailableProductsFridgeModel
+    public class ProductModel
     {
         public long Id { get; set; }
         public string Name { get; set; }
         public string Count { get; set; }
         public double Price { get; set; }
         public double EnergyValue { get; set; }
-        public int RemainingShelfLife { get; set; }
+        public string DateOfManufacture { get; set; }
+        public string ExpirationDate { get; set; }
     }
 }

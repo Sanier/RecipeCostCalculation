@@ -1,6 +1,6 @@
 ﻿namespace RecipeCostCalculation.Domain.Entities
 {
-    public class FridgeEntity
+    public class ProductEntity
     {
         public long Id { get; set; }
         public required string Name { get; set; }
