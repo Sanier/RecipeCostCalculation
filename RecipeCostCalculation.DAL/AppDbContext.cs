@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using RecipeCostCalculation.Domain.Entities;
+using RecipeCostCalculation.Domain.Models;
 
 namespace RecipeCostCalculation.DAL
 {
-    public class AppDbContext
+    public class AppDbContext : DbContext
     {
-        //TO DO
+        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<RecipeModel> Recipe { get; set; }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
+        {
+            Database.EnsureCreated();
+        }
     }
 }

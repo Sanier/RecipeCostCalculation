@@ -116,7 +116,7 @@
 
         $('#createProductId').on('click', function (e) {
             $.ajax({
-                type: 'POST',
+                method: 'POST',
                 url: '@Url.Action("Create")',
                 data: $('#CreateMyProductForm').serialize(),
                 success: function (response) {

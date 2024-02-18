@@ -5,24 +5,36 @@ namespace RecipeCostCalculation.DAL.Repositories
 {
     public class ProductRepositories : IBaseRepositories<ProductEntity>
     {
-        public Task Create(ProductEntity entity)
+        private readonly AppDbContext _appDbContext;
+
+        public ProductRepositories(AppDbContext appDbContext)
         {
-            throw new NotImplementedException();
+            _appDbContext = appDbContext;
         }
 
-        public Task Delete(ProductEntity entity)
+        public async Task Create(ProductEntity entity)
         {
-            throw new NotImplementedException();
+            await _appDbContext.Products.AddAsync(entity);
+            await _appDbContext.SaveChangesAsync();
+        }
+
+        public async Task Delete(ProductEntity entity)
+        {
+            _appDbContext.Products.Remove(entity);
+            await _appDbContext.SaveChangesAsync();
         }
 
         public IQueryable<ProductEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _appDbContext.Products;
         }
 
-        public Task<ProductEntity> Update(ProductEntity entity)
+        public async Task<ProductEntity> Update(ProductEntity entity)
         {
-            throw new NotImplementedException();
+            _appDbContext.Products.Update(entity);
+            await _appDbContext.SaveChangesAsync();
+
+            return entity;
         }
     }
 }

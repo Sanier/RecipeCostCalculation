@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using RecipeCostCalculation.DAL;
 using RecipeCostCalculation.DAL.Interfaces;
 using RecipeCostCalculation.DAL.Repositories;
 using RecipeCostCalculation.Domain.Entities;
@@ -9,8 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IBaseRepositories<ProductEntity>, FakeProductRepositories>();
-builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services
+    .AddScoped<IBaseRepositories<ProductEntity>, ProductRepositories>()
+    .AddScoped<IProductService, ProductService>()
+    .AddDbContext<AppDbContext>(options =>
+    {
+        var connectionString = builder.Configuration.GetConnectionString("postgres");
+        options.UseNpgsql(connectionString);
+    });
 
 var app = builder.Build();
 
