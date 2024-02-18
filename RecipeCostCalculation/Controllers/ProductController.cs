@@ -37,7 +37,7 @@ namespace RecipeCostCalculation.Controllers
             return Json(new {data = response.Data});
         }
 
-        [HttpPost]
+        [HttpDelete]
         public async Task<IActionResult> DeleteProductsInFridge(long id)
         {
             var response = await _productService.DeleteProductsInFridge(id);

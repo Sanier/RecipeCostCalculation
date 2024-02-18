@@ -5,8 +5,8 @@
 <div class="main-fredge">
     <h1>Холодильник</h1>
     <form id="CreateMyProductForm">
-        <input id="nameId" name="name" type="text" placeholder="Количество">
-        <input id="countId" name="count" type="text" placeholder="Цена">
+        <input id="nameId" name="name" type="text" placeholder="Название">
+        <input id="countId" name="count" type="text" placeholder="Количество">
         <input id="priceId" name="price" type="number" placeholder="Цена">
         <input id="energyValueId" name="energyValue" type="number" placeholder="Энергитическая ценность">
         <input id="expirationDateId" name="expirationDate" type="text" placeholder="Конец годности">
@@ -35,6 +35,13 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success"
+            },
+            buttonsStyling: false
+        });
+
         let dataTable = $('#dataTableId').DataTable({
             ajax: {
                 url: '@Url.Action("GetProductsInFridge")',
@@ -51,7 +58,7 @@
                     data: null,
                     sortable: false,
                     render: function (data, type) {
-                        return '<button class="btn btn-success btn-sm center-block">Delete</button>'
+                        return '<button class="btn btn-danger btn-sm center-block">Delete</button>'
                     }
                 }
             ],
@@ -65,7 +72,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             $.ajax({
-                                type: 'POST',
+                                type: 'DELETE',
                                 url: '@Url.Action("DeleteProductsInFridge")',
                                 data: { id: data.id },
                                 success: function (response) {

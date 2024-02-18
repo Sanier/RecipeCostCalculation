@@ -4,11 +4,17 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RecipeCostCalculation.Domain\RecipeCostCalculation.Domain.csproj" />
     <ProjectReference Include="..\RecipeCostCalculation.Service\RecipeCostCalculation.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include=".docker\" />
   </ItemGroup>
 
 </Project>
