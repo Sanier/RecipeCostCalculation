@@ -1,4 +1,4 @@
-﻿namespace RecipeCostCalculation.Domain.Models
+﻿namespace RecipeCostCalculation.Domain.Models.ProductModels
 {
     public class CreateProductModel
     {
