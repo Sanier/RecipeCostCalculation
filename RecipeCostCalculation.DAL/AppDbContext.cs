@@ -7,7 +7,7 @@ namespace RecipeCostCalculation.DAL
     public class AppDbContext : DbContext
     {
         public DbSet<ProductEntity> Products { get; set; }
-        public DbSet<RecipeModel> Recipe { get; set; }
+        public DbSet<RecipeEntity> Recipe { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
         {

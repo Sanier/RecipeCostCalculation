@@ -41,67 +41,68 @@
             },
             buttonsStyling: false
         });
-
-        let dataTable = $('#dataTableId').DataTable({
-            ajax: {
-                url: '@Url.Action("GetProductsInFridge")',
-                method: 'GET',
-                data: model
-            },
-            columns: [
-                { data: 'name' },
-                { data: 'count' },
-                { data: 'price' },
-                { data: 'energyValue' },
-                { data: 'remainingShelfLife' },
-                {
-                    data: null,
-                    sortable: false,
-                    render: function (data, type) {
-                        return '<button class="btn btn-danger btn-sm center-block">Delete</button>'
-                    }
-                }
-            ],
-            createdRow: function (nRow, data) {
-                let handlerComplete = function () {
-                    swalWithBootstrapButtons.fire({
-                        title: "Are you sure?",
-                        icon: "warning",
-                        confirmButtonText: "Yes",
-                        reverseButtons: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.ajax({
-                                type: 'DELETE',
-                                url: '@Url.Action("DeleteProductsInFridge")',
-                                data: { id: data.id },
-                                success: function (response) {
-                                    Swal.fire({
-                                        title: 'Information',
-                                        text: response.description,
-                                        icon: 'success',
-                                        confirmButtonText: 'Ok'
-                                    })
-                                    dataTable.draw();
-                                },
-                                error: function (response) {
-                                    Swal.fire({
-                                        title: 'Information',
-                                        text: response.responseJSON.description,
-                                        icon: 'error',
-                                        confirmButtonText: 'Ok'
-                                    })
-                                }
-                            });
+        $(document).ready(function () {
+            let dataTable = $('#dataTableId').DataTable({
+                ajax: {
+                    method: 'GET',
+                    url: '@Url.Action("GetProductsInFridge")',
+                    data: model()
+                },
+                columns: [
+                    { data: 'name' },
+                    { data: 'count' },
+                    { data: 'price' },
+                    { data: 'energyValue' },
+                    { data: 'remainingShelfLife' },
+                    {
+                        data: null,
+                        sortable: false,
+                        render: function (data, type) {
+                            return '<button class="btn btn-danger btn-sm center-block">Delete</button>'
                         }
-                    });
+                    }
+                ],
+                createdRow: function (nRow, data) {
+                    let handlerComplete = function () {
+                        swalWithBootstrapButtons.fire({
+                            title: "Are you sure?",
+                            icon: "warning",
+                            confirmButtonText: "Yes",
+                            reverseButtons: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: 'DELETE',
+                                    url: '@Url.Action("DeleteProductsInFridge")',
+                                    data: { id: data.id },
+                                    success: function (response) {
+                                        Swal.fire({
+                                            title: 'Information',
+                                            text: response.description,
+                                            icon: 'success',
+                                            confirmButtonText: 'Ok'
+                                        })
+                                        dataTable.draw();
+                                    },
+                                    error: function (response) {
+                                        Swal.fire({
+                                            title: 'Information',
+                                            text: response.responseJSON.description,
+                                            icon: 'error',
+                                            confirmButtonText: 'Ok'
+                                        })
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    for (let i = 0; i < dataTable.columns().header().length - 1; i++) {
+                        $('td', nRow).eq(i).css('cursor', 'pointer');
+                        $('td', nRow).eq(i).on('click', null);
+                    }
+                    $('td button', nRow).on('click', handlerComplete);
                 }
-                for (let i = 0; i < dataTable.columns().header().length - 1; i++) {
-                    $('td', nRow).eq(i).css('cursor', 'pointer');
-                    $('td', nRow).eq(i).on('click', null);
-                }
-                $('td button', nRow).on('click', handlerComplete);
-            }
+            });
         });
 
         function model() {
@@ -112,7 +113,7 @@
                 EnergyValue: $('input[name="energyValue"]').val(),
                 RemainingShelfLife: $('input[name="expirationDate"]').val()
             }
-        }
+        };
 
         $('#createProductId').on('click', function (e) {
             $.ajax({

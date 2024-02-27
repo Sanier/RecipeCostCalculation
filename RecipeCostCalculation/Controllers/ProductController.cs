@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using RecipeCostCalculation.Domain.Models;
+using RecipeCostCalculation.Models;
 using RecipeCostCalculation.Service.Interfaces;
 
 namespace RecipeCostCalculation.Controllers
@@ -57,6 +59,12 @@ namespace RecipeCostCalculation.Controllers
                 return Ok(new { description = response.Description });
 
             return BadRequest(new { description = response.Description });
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
