@@ -1,8 +1,8 @@
 ﻿using RecipeCostCalculation.Domain.Models.ProductModels;
 
-namespace RecipeCostCalculation.Domain.Entities
+namespace RecipeCostCalculation.Domain.Models.RecipeModels
 {
-    public class RecipeEntity
+    public class RecipeModel
     {
         public long Id { get; set; }
         public required string Name { get; set; }
