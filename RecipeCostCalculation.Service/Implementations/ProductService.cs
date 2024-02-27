@@ -77,15 +77,14 @@ namespace RecipeCostCalculation.Service.Implementations
                     Count = createFridgeModel.Count,
                     Price = createFridgeModel.Price,
                     EnergyValue = createFridgeModel.EnergyValue,
-                    DateOfManufacture = DateTime.Now,
-                    //ExpirationDate = createFridgeModel.ExpirationDate as DateTime
+                    //DateOfManufacture = DateTime.Now,
+                    //ExpirationDate = DateTime.Now
                 };
 
                 await _fridgeRepository.Create(list);
 
                 //_logger.LogInformation($":");
 
-                //может не работать сейчас
                 await _fridgeRepository.Update(list);
                 return OutputProcessing<ProductEntity>("The task has been created", StatusCode.Success);
             }
